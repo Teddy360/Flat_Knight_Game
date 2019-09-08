@@ -8,18 +8,38 @@ public class Health : MonoBehaviour
 
     public int health;
     public int numOfHearts;
-
+    private bool invincible = false;
     public Image[] hearts;
     public Sprite fullHeart;
     public Sprite emptyHeart;
-    
-
-    void OnTriggerEnter(Collider col)
+    public float invincibilityTime = 3f;
+    IEnumerator Invulnerability()
     {
-        if(col.tag == "Enemy")
+        invincible = true;
+        yield return new WaitForSeconds(invincibilityTime);
+        invincible = false;
+  
+    }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+       if (!invincible)
         {
+            if (col.tag == "Enemy")
+            {
+                StartCoroutine(Invulnerability());
+                LoseHealth();
+                Invoke("resetInvulnerability", 2);
+                if (col.gameObject.GetComponent<EnemyHealth>().isDeadEnemy)
+                {
+                    health += 1;
+                    Destroy(col.gameObject);
+                }
 
+                
+            }
         }
+       
+
     }
     void Update()
     {
@@ -51,6 +71,11 @@ public class Health : MonoBehaviour
     }
     void LoseHealth()
     {
-        health = health - 1;
+        
+        health -= 1;
+    }
+    void resetInvulnerability()
+    {
+        invincible = false;
     }
 }

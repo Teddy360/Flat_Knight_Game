@@ -25,13 +25,20 @@ public class Health : MonoBehaviour
        if (!invincible)
         {
             if (col.tag == "Enemy")
+              
             {
-                StartCoroutine(Invulnerability());
-                LoseHealth();
-                Invoke("resetInvulnerability", 2);
-                if (col.gameObject.GetComponent<EnemyHealth>().isDeadEnemy)
+          
+                
+                    StartCoroutine(Invulnerability());
+                    LoseHealth();
+                    Invoke("resetInvulnerability", 2);
+               
+                    if (col.gameObject.GetComponent<EnemyHealth>().isDeadEnemy) 
+                
                 {
+                   
                     health += 1;
+              
                     Destroy(col.gameObject);
                 }
 

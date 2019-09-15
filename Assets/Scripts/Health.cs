@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Health : MonoBehaviour
+ 
 {
-
+    public GameObject Heart;
     public int health;
     public int numOfHearts;
     private bool invincible = false;
@@ -20,10 +21,13 @@ public class Health : MonoBehaviour
         invincible = false;
   
     }
+    // Enemy Collision detection and health loss
     void OnTriggerEnter2D(Collider2D col)
     {
        if (!invincible)
         {
+            
+
             if (col.tag == "Enemy")
               
             {
@@ -36,7 +40,9 @@ public class Health : MonoBehaviour
                     if (col.gameObject.GetComponent<EnemyHealth>().isDeadEnemy) 
                 
                 {
-                   
+                    float x = this.transform.position.x;
+                    float y = this.transform.position.y;
+                    Instantiate(Heart, new Vector3(x, y, 0), Quaternion.identity);
                     health += 1;
               
                     Destroy(col.gameObject);
@@ -45,13 +51,16 @@ public class Health : MonoBehaviour
                 
             }
         }
-       
+      
 
-    }
+    }   
+    
+        
+ 
     void Update()
     {
        
-            // General health code
+        // General health code
         if (health > numOfHearts)
         {
             health = numOfHearts;
@@ -76,11 +85,13 @@ public class Health : MonoBehaviour
             }
         }
     }
+    //Lose Your Health
     void LoseHealth()
     {
         
         health -= 1;
     }
+    //Removes Invulnerability
     void resetInvulnerability()
     {
         invincible = false;

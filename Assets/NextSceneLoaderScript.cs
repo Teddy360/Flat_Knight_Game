@@ -13,11 +13,12 @@ public class NextSceneLoaderScript : MonoBehaviour {
         nextSceneToLoad = SceneManager.GetActiveScene().buildIndex + 1;
 	}
 	
-    void onTriggerEnter2D(Collider2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
+        Debug.Log("Ontriggerenter");
         if(col.tag == "Player")
         {
-            Debug.Log("NExtScene");
+            Debug.Log("NextScene");
             SceneManager.LoadScene(nextSceneToLoad);
             Debug.Log("NextSCene");
         }
@@ -26,6 +27,7 @@ public class NextSceneLoaderScript : MonoBehaviour {
     }
    public void nextScene()
     {
-        SceneManager.LoadScene(nextSceneToLoad);
+        Debug.Log("NextScene");
+        SceneManager.LoadScene(1);
     }
 }

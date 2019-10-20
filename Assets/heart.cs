@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class heart : MonoBehaviour
 {
+ 
+   
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Player")
-        {
-            col.gameObject.GetComponent<Health>().health += 1;
-            Debug.Log("heart script: " + col.gameObject.GetComponent<Health>().health.ToString());
-            Destroy(gameObject);
-
-
-
-
+        { 
+        
+         
+                col.gameObject.GetComponent<Health>().health += 1;
+                Debug.Log("heart script: " + col.gameObject.GetComponent<Health>().health.ToString());
+                 Destroy(gameObject);
         }
 
 

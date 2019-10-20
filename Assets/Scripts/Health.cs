@@ -14,7 +14,12 @@ public class Health : MonoBehaviour
     public Sprite fullHeart;
     public Sprite emptyHeart;
     public float invincibilityTime = 3f;
-    IEnumerator Invulnerability()
+    void Start()
+    {
+
+    }
+    
+        IEnumerator Invulnerability()
     {
         invincible = true;
         yield return new WaitForSeconds(invincibilityTime);
@@ -36,20 +41,6 @@ public class Health : MonoBehaviour
                 StartCoroutine(Invulnerability());
                 LoseHealth();
                 Invoke("resetInvulnerability", 2);
-               
-                 
-                //if (col.gameObject.GetComponent<EnemyHealth>().isDeadEnemy)
-                //{
-                    /*
-                    // Debug.Log("actually making heart");
-                    //Instantiate(Heart, new Vector3(x, y, 0), Quaternion.identity);
-                    Debug.Log("Health Script Before Increase:" + health.ToString());
-                    health += 1;
-                    Debug.Log("Health Script After Increase:" + health.ToString());
-                   
-                    Destroy(col.gameObject);
-                    */
-                //}
 
                 
             }
@@ -66,7 +57,7 @@ public class Health : MonoBehaviour
         // General health code
         if (health > MAX_HEALTH)
         {
-            //health = MAX_HEALTH;
+            health = MAX_HEALTH;
         }
         Debug.Log("Health Script:" + health.ToString());
         for (int i = 0; i < hearts.Length; i++)

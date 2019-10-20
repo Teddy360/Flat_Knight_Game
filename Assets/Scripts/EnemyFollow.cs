@@ -21,11 +21,20 @@ public class EnemyFollow : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
+
         if (Mathf.Abs(this.transform.position.x - target.position.x) <= distance)
         {
             Debug.Log("Goingtoplayer");
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
         }
-       
-	}
+        if (this.transform.position.x - target.position.x < 0)
+            {
+           this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            }
+            else
+            {
+
+            this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+        }
+    }
 }

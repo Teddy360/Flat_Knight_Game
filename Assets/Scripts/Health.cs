@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour
  
 {
-    public GameObject Heart;
+   
     public int health;
-    public int numOfHearts;
+    public int MAX_HEALTH;
     private bool invincible = false;
     public Image[] hearts;
     public Sprite fullHeart;
@@ -33,20 +33,23 @@ public class Health : MonoBehaviour
             {
           
                 
-                    StartCoroutine(Invulnerability());
-                    LoseHealth();
-                    Invoke("resetInvulnerability", 2);
+                StartCoroutine(Invulnerability());
+                LoseHealth();
+                Invoke("resetInvulnerability", 2);
                
-                    if (col.gameObject.GetComponent<EnemyHealth>().isDeadEnemy) 
-                
-                {
-                    float x = this.transform.position.x;
-                    float y = this.transform.position.y;
-                    Instantiate(Heart, new Vector3(x, y, 0), Quaternion.identity);
+                 
+                //if (col.gameObject.GetComponent<EnemyHealth>().isDeadEnemy)
+                //{
+                    /*
+                    // Debug.Log("actually making heart");
+                    //Instantiate(Heart, new Vector3(x, y, 0), Quaternion.identity);
+                    Debug.Log("Health Script Before Increase:" + health.ToString());
                     health += 1;
-              
+                    Debug.Log("Health Script After Increase:" + health.ToString());
+                   
                     Destroy(col.gameObject);
-                }
+                    */
+                //}
 
                 
             }
@@ -61,10 +64,11 @@ public class Health : MonoBehaviour
     {
        
         // General health code
-        if (health > numOfHearts)
+        if (health > MAX_HEALTH)
         {
-            health = numOfHearts;
+            //health = MAX_HEALTH;
         }
+        Debug.Log("Health Script:" + health.ToString());
         for (int i = 0; i < hearts.Length; i++)
         {
             if (i < health)
@@ -75,7 +79,8 @@ public class Health : MonoBehaviour
             {
                 hearts[i].sprite = emptyHeart;
             }
-            if (i < numOfHearts)
+
+            if (i < MAX_HEALTH)
             {
                 hearts[i].enabled = true;
             }
@@ -88,7 +93,6 @@ public class Health : MonoBehaviour
     //Lose Your Health
     void LoseHealth()
     {
-        
         health -= 1;
     }
     //Removes Invulnerability

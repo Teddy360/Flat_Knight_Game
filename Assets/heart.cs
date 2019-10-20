@@ -9,6 +9,7 @@ public class heart : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             col.gameObject.GetComponent<Health>().health += 1;
+            Debug.Log("heart script: " + col.gameObject.GetComponent<Health>().health.ToString());
             Destroy(gameObject);
 
 

@@ -6,10 +6,9 @@ public class Weapon : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.tag == "Enemy")
+        if (col.tag == "Enemy")
         {
             col.gameObject.GetComponent<EnemyHealth>().onDeath();
         }
     }
-	
 }

@@ -8,15 +8,17 @@ public class Health : MonoBehaviour
 {
    
     public int health;
+    public GameObject Player;
     public int MAX_HEALTH;
     private bool invincible = false;
     public Image[] hearts;
     public Sprite fullHeart;
     public Sprite emptyHeart;
     public float invincibilityTime = 3f;
+    Vector2 resetPosition;
     void Start()
     {
-
+        resetPosition = this.transform.position;
     }
     
         IEnumerator Invulnerability()
@@ -29,7 +31,14 @@ public class Health : MonoBehaviour
     // Enemy Collision detection and health loss
     void OnTriggerEnter2D(Collider2D col)
     {
-       if (!invincible)
+        
+    
+            if (col.tag == "Checkpoint")
+            {
+                resetPosition = col.transform.position;
+            }
+        
+        if (!invincible)
         {
             
 
@@ -53,7 +62,11 @@ public class Health : MonoBehaviour
  
     void Update()
     {
-       
+        if (health <= 0)
+        {
+            onDeath();
+        }
+
         // General health code
         if (health > MAX_HEALTH)
         {
@@ -91,4 +104,11 @@ public class Health : MonoBehaviour
     {
         invincible = false;
     }
+
+    void onDeath()
+    {
+        Player.transform.position = resetPosition;
+        health = 5;
+    }
+    
 }

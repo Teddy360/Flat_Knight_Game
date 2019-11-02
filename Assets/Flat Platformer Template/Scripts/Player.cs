@@ -49,6 +49,7 @@ public class Player : MonoBehaviour {
 
     void FixedUpdate()
     {
+        
         Vector3 dir = cam.ScreenToWorldPoint(Input.mousePosition) - _Blade.transform.position;
         dir.Normalize();
 

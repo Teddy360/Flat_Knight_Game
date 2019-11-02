@@ -15,6 +15,7 @@ public class Health : MonoBehaviour
     public Sprite fullHeart;
     public Sprite emptyHeart;
     public float invincibilityTime = 3f;
+ 
     Vector2 resetPosition;
     void Start()
     {
@@ -97,6 +98,7 @@ public class Health : MonoBehaviour
     //Lose Your Health
     void LoseHealth()
     {
+       
         health -= 1;
     }
     //Removes Invulnerability

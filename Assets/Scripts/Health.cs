@@ -15,11 +15,14 @@ public class Health : MonoBehaviour
     public Sprite fullHeart;
     public Sprite emptyHeart;
     public float invincibilityTime = 3f;
+    public GameObject damageIndicator;
  
     Vector2 resetPosition;
     void Start()
     {
         resetPosition = this.transform.position;
+        damageIndicator.SetActive(false);
+
     }
     
         IEnumerator Invulnerability()
@@ -98,8 +101,14 @@ public class Health : MonoBehaviour
     //Lose Your Health
     void LoseHealth()
     {
-       
+        damageIndicator.SetActive(true);
         health -= 1;
+        Invoke("turnBigScaryThingOff", 0.5f);
+    }
+
+    void turnBigScaryThingOff()
+    {
+        damageIndicator.SetActive(false);
     }
     //Removes Invulnerability
     void resetInvulnerability()

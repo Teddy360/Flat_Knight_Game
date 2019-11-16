@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class NextSceneLoaderScript : MonoBehaviour {
 
    int nextSceneToLoad;
+    public AudioSource VictorySound;
 	
 	void Start ()
     {
@@ -19,6 +20,7 @@ public class NextSceneLoaderScript : MonoBehaviour {
         if(col.tag == "Player")
         {
             Debug.Log("NextScene");
+            VictorySound.Play();
             SceneManager.LoadScene(nextSceneToLoad);
             Debug.Log("NextSCene");
         }

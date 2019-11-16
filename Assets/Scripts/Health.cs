@@ -121,5 +121,8 @@ public class Health : MonoBehaviour
         Player.transform.position = resetPosition;
         health = 5;
     }
-    
+    void GainHealth()
+    {
+        health += 1;
+    }
 }

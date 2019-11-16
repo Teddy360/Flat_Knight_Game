@@ -20,6 +20,9 @@ public class Player : MonoBehaviour {
     private Rigidbody2D rig;
     private Vector2 _inputAxis;
     private RaycastHit2D _hit;
+    public AudioSource Walksound;
+    public AudioSource Jumpsound;
+    public AudioSource Heartsound;
 
 	void Start ()
     {
@@ -79,6 +82,11 @@ public class Player : MonoBehaviour {
             {
                 _Legs.clip = _walk;
                 _Legs.Play();
+                if (!Walksound.isPlaying)
+                {
+                    Walksound.Play();
+                }
+
             }
         }
 
@@ -94,6 +102,10 @@ public class Player : MonoBehaviour {
             _Legs.Play();
             _canJump = false;
             _isJump = false;
+            if(!Jumpsound.isPlaying)
+            {
+                Jumpsound.Play();
+            }
         }
     }
 

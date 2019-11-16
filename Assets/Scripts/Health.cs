@@ -16,6 +16,8 @@ public class Health : MonoBehaviour
     public Sprite emptyHeart;
     public float invincibilityTime = 3f;
     public GameObject damageIndicator;
+    public AudioSource Hitsound;
+    public AudioSource Deathsound;
  
     Vector2 resetPosition;
     void Start()
@@ -102,6 +104,7 @@ public class Health : MonoBehaviour
     void LoseHealth()
     {
         damageIndicator.SetActive(true);
+        Hitsound.Play();
         health -= 1;
         Invoke("turnBigScaryThingOff", 0.5f);
     }
@@ -120,9 +123,7 @@ public class Health : MonoBehaviour
     {
         Player.transform.position = resetPosition;
         health = 5;
+        Deathsound.Play();
     }
-    void GainHealth()
-    {
-        health += 1;
-    }
+   
 }

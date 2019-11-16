@@ -23,6 +23,7 @@ public class Player : MonoBehaviour {
     public AudioSource Walksound;
     public AudioSource Jumpsound;
     public AudioSource Heartsound;
+   
 
 	void Start ()
     {
@@ -118,4 +119,5 @@ public class Player : MonoBehaviour {
     {
         Gizmos.DrawLine(transform.position, _GroundCast.position);
     }
+    
 }

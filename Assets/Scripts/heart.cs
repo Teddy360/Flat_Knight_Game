@@ -14,6 +14,7 @@ public class heart : MonoBehaviour
                 col.gameObject.GetComponent<Health>().health += 1;
                 Player playerObj = col.gameObject.GetComponentInParent<Player>();
                 //print("playerObj is " + col.gameObject.GetComponentInParent<Player>());
+                playerObj.Heartsound.time = 1.2f;
                 playerObj.Heartsound.Play();
                 Debug.Log("heart script: " + col.gameObject.GetComponent<Health>().health.ToString());
                  Destroy(gameObject);

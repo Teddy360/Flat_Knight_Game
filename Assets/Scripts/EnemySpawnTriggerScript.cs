@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class EnemySpawnTriggerScript : MonoBehaviour
 {
-    public GameObject Player;
+
     public GameObject Enemy;
 
     void OnTriggerEnter2D(Collider2D col)
     {
         if(col.tag == "Player")
         {
-            Instantiate(Enemy, new Vector3(Player.transform.position.x - 5, Player.transform.position.y, 0), Quaternion.identity);
+            Vector3 spawnPos = new Vector3(this.transform.position.x, this.transform.position.y - 5, this.transform.position.z);
+            Instantiate(Enemy, spawnPos, Quaternion.identity);
             Destroy(this);
         }
     }

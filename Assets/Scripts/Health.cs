@@ -18,11 +18,12 @@ public class Health : MonoBehaviour
     public GameObject damageIndicator;
     public AudioSource Hitsound;
     public AudioSource Deathsound;
+  
  
     Vector2 resetPosition;
     void Start()
-    {
-        resetPosition = this.transform.position;
+    {  
+       resetPosition = this.transform.position;
         damageIndicator.SetActive(false);
 
     }

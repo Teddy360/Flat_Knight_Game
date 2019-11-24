@@ -16,7 +16,7 @@ public class Weapon : MonoBehaviour
     {
         if (col.tag == "Enemy")
         {
-
+            Debug.Log("Bladehit");
             hitSound.Play();
             col.gameObject.GetComponent<EnemyHealth>().onDeath();
            

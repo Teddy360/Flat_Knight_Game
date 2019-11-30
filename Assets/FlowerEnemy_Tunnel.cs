@@ -8,14 +8,17 @@ public class FlowerEnemy_Tunnel : MonoBehaviour {
 	void Start()
     {
         Instantiate(effect, transform.position, Quaternion.identity);
-        new WaitForSeconds(15);
+        Invoke("Popup", 1f);
+    }
+    void Popup()
+    {
         this.transform.position += new Vector3(0, Y_SPEED, 0);
         StartCoroutine(UnderGround());
     }
 
     IEnumerator UnderGround()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         this.transform.position -= new Vector3(0, Y_SPEED, 0);
         Destroy(this);
     }

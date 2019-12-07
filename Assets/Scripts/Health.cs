@@ -60,6 +60,18 @@ public class Health : MonoBehaviour
 
                 
             }
+            if(col.tag == "Boss")
+
+
+            {
+
+
+                StartCoroutine(Invulnerability());
+                LoseHealth();
+                Invoke("resetInvulnerability", 2);
+
+
+            }
         }
       
 

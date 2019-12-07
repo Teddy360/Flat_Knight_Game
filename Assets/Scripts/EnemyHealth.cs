@@ -32,7 +32,12 @@ public class EnemyHealth : MonoBehaviour {
         
             isDeadEnemy = true;
             Instantiate(effect, transform.position, Quaternion.identity);
-            Instantiate(bloodSplash, transform.position, Quaternion.identity);
+           
+            if(bloodSplash != null)
+            {
+                Instantiate(bloodSplash, transform.position, Quaternion.identity);
+            }
+                
             Destroy(this.gameObject);
         }
  

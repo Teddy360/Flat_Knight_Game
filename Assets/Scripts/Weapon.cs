@@ -20,16 +20,8 @@ public class Weapon : MonoBehaviour
             hitSound.Play();
             col.gameObject.GetComponent<EnemyHealth>().onDeath();
            
-            }
-          
-
-         
-    
-            
-            
-               
-            
-           
-        }
+         }
+       
     }
+}
     

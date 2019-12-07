@@ -11,6 +11,8 @@ public class EnemyBounce : MonoBehaviour
          
         if(col.tag == "Floor")
         {
+
+            Debug.Log("sdlfjsdklfj");
             this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, BouncePower));
         }
     }

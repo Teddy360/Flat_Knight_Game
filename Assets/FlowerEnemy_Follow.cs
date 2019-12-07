@@ -22,11 +22,11 @@ public class FlowerEnemy_Follow : MonoBehaviour
         if (Mathf.Abs(this.transform.position.x - target.position.x) <= distance)
         {
             Debug.Log("Goingtoplayer");
-            //transform.position = 
+           
             Vector2 newPosition = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
             newPosition.y = transform.position.y;
             transform.position = newPosition;
-            //transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            
         }
 
     }

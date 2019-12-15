@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
  
@@ -18,7 +19,12 @@ public class Health : MonoBehaviour
     public GameObject damageIndicator;
     public AudioSource Hitsound;
     public AudioSource Deathsound;
-  
+    public bool isDead = false;
+    public GameObject  BossOne;
+    public GameObject BossTwo;
+    public Transform BossSpawnPoint;
+    public GameObject Boss;
+
  
     Vector2 resetPosition;
     void Start()
@@ -70,6 +76,13 @@ public class Health : MonoBehaviour
                 LoseHealth();
                 Invoke("resetInvulnerability", 2);
 
+
+            }
+            if(col.tag == "Projectile")
+            {
+                StartCoroutine(Invulnerability());
+                LoseHealth();
+                Invoke("resetInvulnerability", 2);
 
             }
         }
@@ -134,9 +147,27 @@ public class Health : MonoBehaviour
 
     void onDeath()
     {
-        Player.transform.position = resetPosition;
-        health = 5;
-        Deathsound.Play();
+        Scene scene = SceneManager.GetActiveScene();
+        if(scene.name == "bossFight")
+        {
+            Boss = GameObject.FindWithTag("Boss");
+            isDead = true;
+            Player.transform.position = resetPosition;
+            health = 5;
+            Deathsound.Play();
+            isDead = false;
+            Destroy(Boss);
+            Instantiate(BossOne);
+        }
+        else
+        {
+            isDead = true;
+            Player.transform.position = resetPosition;
+            health = 5;
+            Deathsound.Play();
+            isDead = false;
+        }
+        
     }
    
 }

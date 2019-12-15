@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RockShoot : MonoBehaviour {
-    
-    public int ShotPower;
-    Rigidbody2D rb;
+    public float speed = 20f;
+    public Rigidbody2D rb;
+
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        
+        rb.velocity = transform.up * speed;
     }
-    void FixedUpdate()
-    { 
-       rb.AddForce(transform.forward * -100f);
-        print("");
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "Player")
+        {
+            Destroy(this.gameObject);
+        }
+       
     }
 }

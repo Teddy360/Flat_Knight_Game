@@ -19,10 +19,9 @@ public class Projectile : MonoBehaviour {
 	void Shoot()
     {
         print("SHOOT SOMETHING");
-        Instantiate(Rock,new Vector3(firepoint.position.x, firepoint.position.y, firepoint.position.z), Quaternion.identity);
-        //this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(ShotPower, 0));
-        /*Vector2 v = -transform.forward;
-        Rock.GetComponent<Rigidbody2D>().AddForce(v * 100f); */
+        Instantiate(Rock, firepoint.position, firepoint.rotation);
+
+     
 
     }
 }

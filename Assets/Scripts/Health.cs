@@ -157,7 +157,7 @@ public class Health : MonoBehaviour
             Deathsound.Play();
             isDead = false;
             Destroy(Boss);
-            Instantiate(BossOne);
+            Instantiate(BossOne, BossSpawnPoint.position, Quaternion.identity);
         }
         else
         {

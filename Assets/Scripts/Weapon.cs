@@ -3,25 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
-{ public Vector2 recoil;
+{
+    public Vector2 recoil;
     public bool hitstate;
     public AudioSource hitSound;
+    public PolygonCollider2D toggleableCollider;
+
 
     void Start()
     {
+
+
         hitstate = false;
     }
 
-        void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         if (col.tag == "Enemy")
         {
             Debug.Log("Bladehit");
             hitSound.Play();
             col.gameObject.GetComponent<EnemyHealth>().onDeath();
-           
-         }
-       
+
+        }
+
     }
+    void OnCollisionEnter2D(Collider2D col)
+    {
+        if (col.tag == "Floor")
+        {
+            toggleableCollider.enabled = false;
+        }
+    }
+    void OnCollisionExit2D(Collider2D col)
+    {
+        toggleableCollider.enabled = true;
+    }
+
 }
     

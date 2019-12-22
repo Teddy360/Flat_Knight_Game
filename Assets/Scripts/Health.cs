@@ -158,6 +158,7 @@ public class Health : MonoBehaviour
             isDead = false;
             Destroy(Boss);
             Instantiate(BossOne, BossSpawnPoint.position, Quaternion.identity);
+
         }
         else
         {

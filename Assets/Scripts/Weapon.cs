@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public Vector2 recoil;
-    public bool hitstate;
+  
+ 
     public AudioSource hitSound;
-    public PolygonCollider2D toggleableCollider;
+   
 
 
     void Start()
     {
 
 
-        hitstate = false;
+    
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -28,17 +28,7 @@ public class Weapon : MonoBehaviour
         }
 
     }
-    void OnCollisionEnter2D(Collider2D col)
-    {
-        if (col.tag == "Floor")
-        {
-            toggleableCollider.enabled = false;
-        }
-    }
-    void OnCollisionExit2D(Collider2D col)
-    {
-        toggleableCollider.enabled = true;
-    }
+   
 
 }
     

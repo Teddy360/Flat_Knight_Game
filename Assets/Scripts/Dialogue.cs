@@ -19,6 +19,7 @@ public class Dialogue : MonoBehaviour
         {
             nextButton.SetActive(true);
         }
+        print(nextButton);
     }
     void Start()
     {
@@ -36,6 +37,7 @@ public class Dialogue : MonoBehaviour
 
     public void NextSentence()
     {
+        print(nextButton);
         nextButton.SetActive(false);
         if (index < sentences.Length - 1)
         {

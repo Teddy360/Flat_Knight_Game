@@ -60,13 +60,18 @@ public class Boss_Health : MonoBehaviour {
     }
     void OnDeath ()
     {
-        Instantiate(Next_Phase, transform.position, Quaternion.identity);
+    
         if(Next_Phase == null)
         {
             Destroy(this.gameObject);
         }
+        else
+        {
+            Instantiate(Next_Phase, transform.position, Quaternion.identity);
+            Destroy(this.gameObject);
+        }
           
-        Destroy(this.gameObject);
+ 
         
     }
     void resetInvulnerability()

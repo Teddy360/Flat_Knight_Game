@@ -23,6 +23,7 @@ public class Player : MonoBehaviour {
     public AudioSource Walksound;
     public AudioSource Jumpsound;
     public AudioSource Heartsound;
+    public GameObject Diploma;
    
 
 	void Start ()
@@ -118,6 +119,26 @@ public class Player : MonoBehaviour {
     void OnDrawGizmos()
     {
         Gizmos.DrawLine(transform.position, _GroundCast.position);
+    }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "Scroll")
+        {
+            Diploma.SetActive(true);
+            if(Diploma == null)
+            {
+                Destroy(col.gameObject);
+            }
+            else
+            {
+                Destroy(col.gameObject);
+            }
+
+        }
+        if(col.tag == "KnockBox")
+        {
+            rig.AddForce(new Vector2(3, 3));
+        }
     }
     
 }

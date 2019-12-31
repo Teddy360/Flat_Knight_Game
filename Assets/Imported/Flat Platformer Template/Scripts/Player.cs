@@ -24,9 +24,11 @@ public class Player : MonoBehaviour {
     public AudioSource Jumpsound;
     public AudioSource Heartsound;
     public GameObject Diploma;
-   
+    public bool isHit;
+    
 
-	void Start ()
+
+    void Start ()
     {
         rig = gameObject.GetComponent<Rigidbody2D>();
         _startScale = transform.localScale.x;
@@ -50,6 +52,14 @@ public class Player : MonoBehaviour {
             _canWalk = false;
             _isJump = true;
         }
+        if(isHit == true)
+        {
+            rig.AddForce(new Vector2(150, 120));
+            isHit = false;
+            
+        }
+        
+        
     }
 
     void FixedUpdate()
@@ -125,7 +135,7 @@ public class Player : MonoBehaviour {
         if (col.tag == "Scroll")
         {
             Diploma.SetActive(true);
-            if(Diploma == null)
+            if (Diploma == null)
             {
                 Destroy(col.gameObject);
             }
@@ -135,10 +145,11 @@ public class Player : MonoBehaviour {
             }
 
         }
-        if(col.tag == "KnockBox")
-        {
-            rig.AddForce(new Vector2(3, 3));
-        }
+
+
     }
+   
+         
+        
     
 }

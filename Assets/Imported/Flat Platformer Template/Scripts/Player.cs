@@ -149,7 +149,55 @@ public class Player : MonoBehaviour {
 
     }
    
-         
-        
+    public IEnumerator Knockback (float knockDur, float knockbackPwr, Vector3 knockbackDir)
+    {
+        float timer = 0;
+
+        while( knockDur > timer )
     
+            timer += Time.deltaTime;
+
+        //rig.AddForce(new Vector3(knockbackDir.x * -100, knockbackDir.y * knockbackPwr, transform.position.z));
+        //rig.AddForce(knockbackDir * -500f);
+        // rig.AddForce(new Vector2(knockbackDir.x, knockbackDir.y));
+        if (_inputAxis.x < 0)
+        {
+            float xDir = knockbackDir.x * 100000;
+            rig.AddForce(new Vector2(xDir, knockbackDir.y * -1000));
+        }
+        else
+        {
+            float xDir = knockbackDir.x * -100000;
+            rig.AddForce(new Vector2(xDir, knockbackDir.y * -1000));
+        }
+        yield return 0;
+      }
+       
+    }
+
+    public void Knockback(float knockDur, float knockbackPwr, Vector3 knockbackDir)
+    {
+        float timer = 0;
+
+        while (knockDur > timer)
+        {
+            timer += Time.deltaTime;
+
+            //rig.AddForce(new Vector3(knockbackDir.x * -100, knockbackDir.y * knockbackPwr, transform.position.z));
+            //rig.AddForce(knockbackDir * -500f);
+            // rig.AddForce(new Vector2(knockbackDir.x, knockbackDir.y));
+            if (_inputAxis.x < 0)
+            {
+                float xDir = knockbackDir.x * 100000;
+                rig.AddForce(new Vector2(xDir, knockbackDir.y * -1000));
+            }
+            else
+            {
+                float xDir = knockbackDir.x * -100000;
+                rig.AddForce(new Vector2(xDir, knockbackDir.y * -1000));
+            }
+
+        }
+    }
+
 }

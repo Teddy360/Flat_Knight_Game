@@ -7,20 +7,18 @@ public class KnockBox : MonoBehaviour {
     public Player PlayerObject;
 
 
- void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D col)
     {
-        if(other.tag == "Player")
-        {
-            print("AddingForce");
-            PlayerObject.isHit = true;
-           // SetisHitFalse();            
-        }
-       
- }
-   /*IEnumerator SetisHitFalse()
-    //{
-        print("removingforce");
-        yield return new WaitForSeconds(.1f);
-        PlayerObject.isHit = false;
-   */ 
-}
+        if(col.tag == "Player")
+         {
+             print("AddingForce");
+            //StartCoroutine(PlayerObject.Knockback(0.02f, 500, PlayerObject.transform.position - col.transform.position));
+            PlayerObject.Knockback(0.02f, 500, PlayerObject.transform.position - col.transform.position);
+                        
+         }
+
+  }
+    
+    }
+
+

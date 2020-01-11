@@ -25,14 +25,16 @@ public class Player : MonoBehaviour {
     public AudioSource Heartsound;
     public GameObject Diploma;
     public bool isHit;
-    
+
+    private Vector2 knockBack = new Vector2(0,0);
 
 
-    void Start ()
+
+    void Start()
     {
         rig = gameObject.GetComponent<Rigidbody2D>();
         _startScale = transform.localScale.x;
-	}
+    }
 
     void Update()
     {
@@ -52,19 +54,19 @@ public class Player : MonoBehaviour {
             _canWalk = false;
             _isJump = true;
         }
-        if(isHit == true)
+        if (isHit == true)
         {
             rig.AddForce(new Vector2(150, 120));
             isHit = false;
-            
+
         }
-        
-        
+
+
     }
 
     void FixedUpdate()
     {
-        
+
         Vector3 dir = cam.ScreenToWorldPoint(Input.mousePosition) - _Blade.transform.position;
         dir.Normalize();
 
@@ -101,11 +103,13 @@ public class Player : MonoBehaviour {
 
             }
         }
-
         else
         {
             rig.velocity = new Vector2(0, rig.velocity.y);
         }
+        //add knockback velocity and apply some friction
+        rig.velocity+=knockBack;
+        knockBack = knockBack * 0.9f;
 
         if (_isJump)
         {
@@ -114,7 +118,7 @@ public class Player : MonoBehaviour {
             _Legs.Play();
             _canJump = false;
             _isJump = false;
-            if(!Jumpsound.isPlaying)
+            if (!Jumpsound.isPlaying)
             {
                 Jumpsound.Play();
             }
@@ -145,11 +149,23 @@ public class Player : MonoBehaviour {
             }
 
         }
+        //Knockback
+        if(col.tag == "Boss")
+        {
+            print("hit by boss");
+            Vector2 bossVeloc = col.gameObject.GetComponent<Rigidbody2D>().velocity.normalized;
+            //print(bossVeloc);
+            //bossVeloc.x *= 5;
+            knockBack = bossVeloc;
+           
+        }
 
 
     }
-   
-    public IEnumerator Knockback (float knockDur, float knockbackPwr, Vector3 knockbackDir)
+  
+}
+
+    /*public IEnumerator Knockback (float knockDur, float knockbackPwr, Vector3 knockbackDir)
     {
         float timer = 0;
 
@@ -201,3 +217,4 @@ public class Player : MonoBehaviour {
     }
 
 }
+*/
